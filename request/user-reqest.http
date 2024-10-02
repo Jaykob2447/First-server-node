@@ -1,0 +1,23 @@
+POST http://localhost:5000/users HTTP/1.1
+Content-Type: application/json
+
+{
+    "firstName": "Some",
+    "lastName": "New",
+    "nickName": "Users"
+}
+
+###
+
+# test try to get feedback from server
+GET http://localhost:5000/ HTTP/1.1
+
+###
+
+GET http://localhost:5000/users HTTP/1.1
+
+###
+
+GET http://localhost:5000/users/3 HTTP/1.1
+
+###
