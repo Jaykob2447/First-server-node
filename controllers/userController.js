@@ -1,6 +1,7 @@
+const createError = require("http-errors");
 const { USERS } = require("../Model/users");
 
-module.exports.createUser = (req, res) => {
+module.exports.createUser = (req, res, next) => {
   const { body } = req;
 
   USERS.push({ ...body, id: String(USERS.length) });
@@ -9,22 +10,20 @@ module.exports.createUser = (req, res) => {
   // навмисно повернув усіх щоб переконатись у створенні
 };
 
-module.exports.hello = (req, res) => {
+module.exports.hello = (req, res, next) => {
   res.status(200).send("Hello");
 };
 
-module.exports.getAllUsers = (req, res) => {
+module.exports.getAllUsers = (req, res, next) => {
   res.status(200).send(USERS);
 };
 
-module.exports.getUserById = (req, res) => {
+module.exports.getUserById = (req, res, next) => {
   const { id } = req.params;
-  console.log(id);
   const foundUser = USERS.findIndex((u) => u.id === id);
 
-  console.log(foundUser);
   if (foundUser === -1) {
-    return res.status(404).send("User not found");
+    return next(createError(404, "User Not Found"));
   }
 
   res.status(200).send(USERS[foundUser]);

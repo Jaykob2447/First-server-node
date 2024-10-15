@@ -1,3 +1,4 @@
+# 201
 POST http://localhost:5000/users HTTP/1.1
 Content-Type: application/json
 
@@ -9,15 +10,31 @@ Content-Type: application/json
 
 ###
 
+# 201
+POST http://localhost:5000/users HTTP/1.1
+Content-Type: application/json
+
+{
+    "firstName": "Some",
+    "lastName": "new",
+    "nickName": "Users"
+}
+
+###
+
 # test try to get feedback from server
+# 200
 GET http://localhost:5000/ HTTP/1.1
 
 ###
-
+# 200
 GET http://localhost:5000/users HTTP/1.1
 
 ###
-
+# 200
 GET http://localhost:5000/users/3 HTTP/1.1
 
 ###
+# 404
+
+GET http://localhost:5000/users/-1 HTTP/1.1
